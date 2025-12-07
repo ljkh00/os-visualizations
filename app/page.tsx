@@ -32,7 +32,7 @@ export default function Home() {
       path: '/artifacts/scheduler',
       emoji: '👨‍🍳',
       color: 'from-blue-500 to-purple-500',
-      recommended: 'INTERMEDIATE'
+      recommended: 'FOR EXMAS'
     },
     {
       title: 'Memory Management',
@@ -48,6 +48,22 @@ export default function Home() {
       path: '/artifacts/file-systems',
       emoji: '📁',
       color: 'from-indigo-500 to-blue-500',
+      recommended: 'FOR EXAMS'
+    },
+    {
+      title: 'Security & Protection',
+      description: 'Understand AAA (Authentication, Authorization, Accounting), protection rings, and common threats.',
+      path: '/artifacts/security',
+      emoji: 'ðŸ›¡ï¸',
+      color: 'from-red-500 to-pink-500',
+      recommended: 'FOR EXAMS'
+    },
+    {
+      title: 'Network Systems',
+      description: 'Learn client-server, sockets, protocols, NFS, and IPC through inter-branch communication.',
+      path: '/artifacts/network',
+      emoji: '🌐',
+      color: 'from-cyan-500 to-blue-500',
       recommended: 'FOR EXAMS'
     },
     {

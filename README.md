@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Confession:
+
+I vibe-code this project in adopting analogies to realize OS concepts with a Restaurant Management System.
+
 ## Getting Started
 
 First, run the development server:
