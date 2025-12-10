@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Pause, RotateCcw, Clock, Zap, AlertCircle, CheckCircle, Timer, TrendingUp } from 'lucide-react';
 
+type ScenarioKey = 'polling' | 'interrupt' | 'dma' | 'buffering';
+
 const IOSystems = () => {
-  const [scenario, setScenario] = useState('polling');
+  const [scenario, setScenario] = useState<ScenarioKey>('polling');
   const [isRunning, setIsRunning] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [chefState, setChefState] = useState({ action: 'idle', location: 'prep', wastedTime: 0 });
-  const [ovenState, setOvenState] = useState({ cooking: false, timeRemaining: 0, dish: null });
-  const [dishwasherState, setDishwasherState] = useState({ running: false, progress: 0 });
-  const [completedTasks, setCompletedTasks] = useState([]);
-  const [logs, setLogs] = useState([]);
+  const [chefState, setChefState] = useState<{ action: string; location: string; wastedTime: number }>({ action: 'idle', location: 'prep', wastedTime: 0 });
+  const [ovenState, setOvenState] = useState<{ cooking: boolean; timeRemaining: number; dish: string | null }>({ cooking: false, timeRemaining: 0, dish: null });
+  const [dishwasherState, setDishwasherState] = useState<{ running: boolean; progress: number }>({ running: false, progress: 0 });
+  const [completedTasks, setCompletedTasks] = useState<Array<{ dish: string; method: string; wastedTime: number }>>([]);
+  const [logs, setLogs] = useState<Array<{ time: number; message: string; type: string }>>([]);
   const [stats, setStats] = useState({ 
     cpuUtilization: 0, 
     wastedCycles: 0, 
@@ -17,7 +19,7 @@ const IOSystems = () => {
     totalTime: 0 
   });
 
-  const scenarios = {
+  const scenarios: Record<ScenarioKey, { name: string; problem: string; description: string; steps: number; concept: string }> = {
     polling: {
       name: 'Polling (Busy Waiting)',
       problem: 'Chef keeps checking oven every second instead of doing other work',
@@ -74,7 +76,7 @@ const IOSystems = () => {
     return () => clearTimeout(timer);
   }, [isRunning, currentTime]);
 
-  const addLog = (message, type = 'info') => {
+  const addLog = (message: string, type: string = 'info') => {
     setLogs(prev => [...prev.slice(-15), { time: currentTime, message, type }]);
   };
 
@@ -139,7 +141,7 @@ const IOSystems = () => {
           ...prev, 
           completedJobs: prev.completedJobs + 1,
           totalTime: currentTime + 1,
-          cpuUtilization: ((1 / (currentTime + 1)) * 100).toFixed(0)
+          cpuUtilization: Math.round((1 / (currentTime + 1)) * 100)
         }));
         break;
       case 8:
@@ -202,7 +204,7 @@ const IOSystems = () => {
           ...prev, 
           completedJobs: 2,
           totalTime: currentTime + 1,
-          cpuUtilization: ((7 / (currentTime + 1)) * 100).toFixed(0),
+          cpuUtilization: Math.round((7 / (currentTime + 1)) * 100),
           wastedCycles: 0
         }));
         break;
@@ -274,7 +276,7 @@ const IOSystems = () => {
           ...prev, 
           completedJobs: 2,
           totalTime: currentTime + 1,
-          cpuUtilization: ((7 / (currentTime + 1)) * 100).toFixed(0),
+          cpuUtilization: Math.round((7 / (currentTime + 1)) * 100),
           wastedCycles: 0
         }));
         break;
@@ -366,7 +368,7 @@ const IOSystems = () => {
         <div className="mb-6">
           <label className="block text-sm font-semibold mb-2">Select I/O Method:</label>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-            {Object.keys(scenarios).map(key => (
+            {(Object.keys(scenarios) as ScenarioKey[]).map((key) => (
               <button
                 key={key}
                 onClick={() => setScenario(key)}

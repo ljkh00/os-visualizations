@@ -360,7 +360,7 @@ const CodeScaffoldingTool = () => {
     }
   };
 
-  const renderLine = (line: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, index: React.Key | null | undefined) => {
+  const renderLine = (line: unknown, index: number) => {
     if (typeof line !== 'string') return null;
     const parts = line.split('____');
     const blankIndex = level.blanks[Math.floor(index / 2)];

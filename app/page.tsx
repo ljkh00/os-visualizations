@@ -3,10 +3,10 @@ import Link from 'next/link';
 export default function Home() {
   const artifacts = [
     {
-      title: '🗺️ OS Introduction',
+      title: '🏢️ OS Introduction',
       description: 'Complete system overview: explore all OS components and see a full process journey from start to finish.',
       path: '/artifacts/introduction',
-      emoji: '🗺️',
+      emoji: '🏢️',
       color: 'from-orange-500 to-red-500',
       recommended: 'START HERE'
     },
@@ -14,15 +14,23 @@ export default function Home() {
       title: 'Process Journey',
       description: 'Follow a process through its lifecycle: NEW → READY → RUNNING → WAITING → TERMINATED.',
       path: '/artifacts/process-journey',
-      emoji: '🍽️',
+      emoji: '🏃️',
       color: 'from-yellow-500 to-orange-500',
       recommended: 'BEGINNER'
+    },
+    {
+      title: '💻 Linux Essentials',
+      description: 'Essential commands, navigation, file operations, permissions, and basic bash scripting.',
+      path: '/artifacts/linux-essentials',
+      emoji: '💻',
+      color: 'from-blue-500 to-cyan-500',
+      recommended: 'ESSENTIAL'
     },
     {
       title: 'Process Concurrency',
       description: 'Understand race conditions, mutexes, semaphores, and deadlocks through interactive scenarios.',
       path: '/artifacts/concurrency',
-      emoji: '🔐',
+      emoji: '🔀',
       color: 'from-purple-500 to-pink-500',
       recommended: 'FOR EXAMS'
     },
@@ -32,7 +40,7 @@ export default function Home() {
       path: '/artifacts/scheduler',
       emoji: '👨‍🍳',
       color: 'from-blue-500 to-purple-500',
-      recommended: 'FOR EXMAS'
+      recommended: 'FOR EXAMS'
     },
     {
       title: 'Memory Management',
@@ -46,7 +54,7 @@ export default function Home() {
       title: 'File Systems',
       description: 'Explore directory hierarchy, inodes, permissions, and file operations through pantry organization.',
       path: '/artifacts/file-systems',
-      emoji: '📁',
+      emoji: '📂',
       color: 'from-indigo-500 to-blue-500',
       recommended: 'FOR EXAMS'
     },
@@ -54,7 +62,7 @@ export default function Home() {
       title: 'Security & Protection',
       description: 'Understand AAA (Authentication, Authorization, Accounting), protection rings, and common threats.',
       path: '/artifacts/security',
-      emoji: 'ðŸ›¡ï¸',
+      emoji: '🛡️',
       color: 'from-red-500 to-pink-500',
       recommended: 'FOR EXAMS'
     },
@@ -65,6 +73,14 @@ export default function Home() {
       emoji: '🌐',
       color: 'from-cyan-500 to-blue-500',
       recommended: 'FOR EXAMS'
+    },
+    {
+      title: '🚀 Advanced Scripting',
+      description: 'Functions, error handling, service building, monitoring, and automation for production servers.',
+      path: '/artifacts/advanced-scripting',
+      emoji: '🚀',
+      color: 'from-purple-500 to-pink-500',
+      recommended: 'FOR ASSIGNMENT'
     },
     {
       title: 'I/O Systems',
@@ -78,7 +94,7 @@ export default function Home() {
       title: 'Code Scaffolding',
       description: 'Progress from restaurant language → OS terms → pseudocode → real C-style code.',
       path: '/artifacts/code-scaffolding',
-      emoji: '📚',
+      emoji: '🔡',
       color: 'from-indigo-500 to-purple-500',
       recommended: 'FOR CODING'
     },
@@ -86,7 +102,7 @@ export default function Home() {
       title: 'Master OS Simulation',
       description: 'Live simulation combining scheduling, memory, concurrency, and I/O operations.',
       path: '/artifacts/master-os',
-      emoji: '🏪',
+      emoji: '🪄',
       color: 'from-pink-500 to-purple-500',
       recommended: 'ADVANCED'
     }
@@ -97,7 +113,7 @@ export default function Home() {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-12">
         <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl font-bold mb-2">🖥️ Operating Systems Learning Portal</h1>
+          <h1 className="text-4xl font-bold mb-2">🏫️ Operating Systems Learning Portal</h1>
           <p className="text-xl text-gray-100">Interactive visualizations using restaurant analogies</p>
           <p className="text-sm text-gray-200 mt-2">
             For students experiencing Linux and OS concepts for the first time
@@ -112,10 +128,14 @@ export default function Home() {
           <ol className="list-decimal list-inside space-y-1 text-sm">
             <li><strong>Start with OS Introduction</strong> - get the complete map of concepts</li>
             <li><strong>Then Process Journey</strong> - understand process states deeply</li>
+            <li><strong>Learn Linux Essentials</strong> - essential commands for your assignments</li>
             <li><strong>Next Concurrency</strong> - grasp synchronization and deadlocks</li>
             <li><strong>Explore CPU Scheduling & Memory</strong> - dive into resource management</li>
             <li><strong>Study File Systems</strong> - understand directory hierarchy and permissions</li>
-            <li><strong>Learn I/O Systems</strong> - compare polling, interrupts, and DMA</li>
+            <li><strong>Learn Security & Protection</strong> - authentication, authorization, threats</li>
+            <li><strong>Understand Network Systems</strong> - client-server, sockets, NFS, IPC</li>
+            <li><strong>Master Advanced Scripting</strong> - build production-ready services</li>
+            <li><strong>Review I/O Systems</strong> - compare polling, interrupts, and DMA</li>
             <li><strong>Use Code Scaffolding</strong> - when you need to write/analyze code</li>
             <li><strong>Try Master OS Simulation</strong> - see everything working together</li>
           </ol>
@@ -159,19 +179,22 @@ export default function Home() {
               <ul className="space-y-2 text-sm">
                 <li>✓ Start with the <strong className="text-orange-400">OS Introduction</strong> to see the big picture</li>
                 <li>✓ Use <strong className="text-yellow-400">Process Journey</strong> to understand states</li>
-                <li>✓ Everything uses restaurant analogies - from customers to chefs to tables</li>
-                <li>✓ Click through step-by-step, don't rush</li>
+                <li>✓ Learn <strong className="text-cyan-400">Linux Essentials</strong> early for practical skills</li>
+                <li>✓ Most concepts use restaurant analogies - from customers to chefs to tables</li>
+                <li>✓ Click through step-by-step, don&apos;t rush</li>
               </ul>
             </div>
             <div>
-              <h3 className="font-bold text-white mb-2">For Exam Preparation:</h3>
+              <h3 className="font-bold text-white mb-2">For Exam & Assignment Prep:</h3>
               <ul className="space-y-2 text-sm">
                 <li>✓ Use <strong className="text-indigo-400">Code Scaffolding</strong> to practice code analysis</li>
                 <li>✓ Review scheduling algorithms in the <strong className="text-blue-400">CPU Scheduler</strong></li>
                 <li>✓ Understand deadlocks and race conditions in <strong className="text-pink-400">Concurrency</strong></li>
                 <li>✓ Master file permissions and paths in <strong className="text-indigo-400">File Systems</strong></li>
+                <li>✓ Learn AAA framework and threats in <strong className="text-red-400">Security</strong></li>
+                <li>✓ Use <strong className="text-purple-400">Advanced Scripting</strong> for service building</li>
+                <li>✓ Learn <strong className="text-cyan-400">client-server model and NFS</strong> for network questions</li>
                 <li>✓ Master I/O concepts like <strong className="text-yellow-400">polling vs interrupts</strong></li>
-                <li>✓ Test your memory management knowledge with paging scenarios</li>
               </ul>
             </div>
           </div>
@@ -179,7 +202,7 @@ export default function Home() {
 
         {/* Assessment Focus */}
         <div className="mt-8 bg-blue-900 rounded-lg p-6 border border-blue-700">
-          <h2 className="text-xl font-bold text-white mb-3">📝 What You'll Be Assessed On:</h2>
+          <h2 className="text-xl font-bold text-white mb-3">🎯 What You&apos;ll Be Assessed On:</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-200">
             <div>
               <h3 className="font-semibold text-blue-300 mb-2">Concept Understanding</h3>
@@ -188,8 +211,10 @@ export default function Home() {
                 <li>Scheduling algorithms</li>
                 <li>Memory management</li>
                 <li>Synchronization</li>
+                <li>Network communication</li>
                 <li>I/O operations</li>
                 <li>File system structure</li>
+                <li>Security & protection</li>
               </ul>
             </div>
             <div>
@@ -199,20 +224,43 @@ export default function Home() {
                 <li>Identify race conditions</li>
                 <li>Analyze bash scripts</li>
                 <li>Debug multithreading</li>
+                <li>Socket programming</li>
                 <li>I/O polling vs interrupts</li>
                 <li>File permissions (rwx)</li>
+                <li>Buffer overflow detection</li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold text-blue-300 mb-2">Practical Skills</h3>
+              <h3 className="font-semibold text-blue-300 mb-2">Practical Skills (Assignment)</h3>
               <ul className="list-disc list-inside space-y-1">
                 <li>Build Linux services</li>
-                <li>System monitoring</li>
-                <li>Bash scripting</li>
+                <li>Service start/stop/restart</li>
+                <li>Process monitoring</li>
+                <li>Bash scripting automation</li>
+                <li>Error handling & logging</li>
                 <li>Server management</li>
                 <li>File system navigation</li>
+                <li>Security best practices</li>
               </ul>
             </div>
+          </div>
+        </div>
+
+        {/* System Admin Note */}
+        <div className="mt-8 bg-cyan-900 rounded-lg p-6 border border-cyan-700">
+          <h2 className="text-xl font-bold text-white mb-3">💡 New! Linux System Administration:</h2>
+          <div className="text-gray-200 space-y-2">
+            <p>
+              <strong className="text-cyan-300">Module 3 (Linux Essentials):</strong> Learn essential commands, 
+              navigation, file operations, permissions, and basic scripting - needed early for assignments.
+            </p>
+            <p>
+              <strong className="text-purple-300">Module 9 (Advanced Scripting):</strong> Build production services 
+              with error handling, monitoring, automation, and multi-service integration.
+            </p>
+            <p className="text-sm text-cyan-200">
+              ⚠️ Note: System administration modules don&apos;t use restaurant analogies - they&apos;re hands-on terminal work!
+            </p>
           </div>
         </div>
 

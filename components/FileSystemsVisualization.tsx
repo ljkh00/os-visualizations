@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Pause, RotateCcw, FolderOpen, File, Link as LinkIcon, Lock, Unlock, Users, HardDrive, AlertCircle, CheckCircle, Eye, Edit, Terminal } from 'lucide-react';
 
+type ScenarioKey = 'hierarchy' | 'inodes' | 'permissions' | 'links' | 'mounting' | 'operations';
+
 const FileSystemsVisualization = () => {
-  const [scenario, setScenario] = useState('hierarchy');
+  const [scenario, setScenario] = useState<ScenarioKey>('hierarchy');
   const [isRunning, setIsRunning] = useState(false);
   const [step, setStep] = useState(0);
   const [selectedNode, setSelectedNode] = useState(null);
-  const [logs, setLogs] = useState([]);
+  const [logs, setLogs] = useState<Array<{ step: number; message: string; type: string }>>([]);
   const [currentUser, setCurrentUser] = useState('chef');
   const [fileSystem, setFileSystem] = useState({
     '/': {
@@ -23,7 +25,7 @@ const FileSystemsVisualization = () => {
     }
   });
 
-  const scenarios = {
+  const scenarios: Record<ScenarioKey, { name: string; description: string; concept: string; steps: number }> = {
     hierarchy: {
       name: 'Directory Hierarchy',
       description: 'Organized pantry system - main storage with sections and subsections',
@@ -84,7 +86,7 @@ const FileSystemsVisualization = () => {
     return () => clearTimeout(timer);
   }, [isRunning, step]);
 
-  const addLog = (message, type = 'info') => {
+  const addLog = (message: string, type: string = 'info') => {
     setLogs(prev => [...prev.slice(-12), { step, message, type }]);
   };
 
@@ -399,7 +401,7 @@ const FileSystemsVisualization = () => {
     setStep(step + 1);
   };
 
-  const permissionCheck = (file, user, operation) => {
+  const permissionCheck = (file: any, user: string, operation: string) => {
     // Simplified permission checking
     const perms = file.permissions;
     const ownerPerms = perms.slice(0, 3);
@@ -413,7 +415,14 @@ const FileSystemsVisualization = () => {
   };
 
   const renderFileTree = () => {
-    const tree = {
+    type FileNode = {
+      name: string;
+      icon: React.ReactNode;
+      type?: string;
+      children?: FileNode[];
+    };
+
+    const tree: FileNode = {
       name: '/ (pantry)',
       icon: <FolderOpen className="w-4 h-4" />,
       children: [
@@ -450,13 +459,13 @@ const FileSystemsVisualization = () => {
       ]
     };
 
-    const renderNode = (node, level = 0) => (
+    const renderNode = (node: FileNode, level: number = 0): React.ReactElement => (
       <div key={node.name} style={{ marginLeft: `${level * 20}px` }} className="my-1">
         <div className="flex items-center gap-2 hover:bg-gray-100 p-1 rounded cursor-pointer">
           {node.icon}
           <span className="text-sm font-mono">{node.name}</span>
         </div>
-        {node.children && node.children.map(child => renderNode(child, level + 1))}
+        {node.children && node.children.map((child) => renderNode(child, level + 1))}
       </div>
     );
 
@@ -478,7 +487,7 @@ const FileSystemsVisualization = () => {
         <div className="mb-6">
           <label className="block text-sm font-semibold mb-2">Select File System Concept:</label>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {Object.keys(scenarios).map(key => (
+            {(Object.keys(scenarios) as ScenarioKey[]).map((key) => (
               <button
                 key={key}
                 onClick={() => setScenario(key)}
